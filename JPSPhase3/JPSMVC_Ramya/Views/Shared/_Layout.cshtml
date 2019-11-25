@@ -1,0 +1,146 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Raleway:300,400,500,700,800" rel="stylesheet">
+
+    <!-- Bootstrap CSS File -->
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+
+    <!-- Main Stylesheet File -->
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://www.w3schools.com/lib/w3-colors-metro.css">
+    <link href="~/Content/BouncingBall.css" rel="stylesheet" />
+
+    <title>@ViewBag.Title - Job Portal System </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+    <script src="https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js"></script>
+    <script src="https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js"></script>
+    <link rel="canonical" href="https://codepen.io/ariona/pen/JopOOr" />
+    <link href="~/Content/Card.css" rel="stylesheet" />
+</head>
+<body>
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Job Portal System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Job Portal", "Index", "JobDetails")</li>
+                        <li>@Html.ActionLink("UserManagement", "Index", "UserInformations")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>*@
+    @if (Session["PhoneNumber"] != null && Session["UserType"].Equals("Admin"))
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top bg-primary">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Job Portal System", "Index", "JobDetailsAdmin", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+
+                        <li>@Html.ActionLink("UserManagement", "Index", "UserInformations")</li>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Welcome!,Admin</a></li>
+
+                        <li>@Html.ActionLink("Logout", "Logout", "UserInformations")</li>
+
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Job Portal System</p>
+            </footer>
+        </div>
+    }
+    else if (Session["PhoneNumber"] != null && Session["UserType"].Equals("User"))
+    {
+        <div class="navbar navbar-inverse navbar-fixed-top bg-info">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Job Portal System", "Index", "JobDetails", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a>Welcome!,@Session["FirstName"].ToString()</a></li>
+                        <li>@Html.ActionLink("Logout", "Logout", "UserInformations")</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Job Portal System</p>
+            </footer>
+        </div>
+    }
+    else if (Session["PhoneNumber"] == null && Session["UserType"] == null)
+    {
+        <div class="card">
+            <div class="card-content">
+
+                <h1>You have been Logged Out</h1>
+                <p>Please Enter your Credentials to Log In</p>
+                <br />
+
+                <a href="@Url.Action("Login", "UserInformations")" class="btnsub">Log In</a>
+
+            </div>
+        </div>
+        <script src="https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+        <script id="rendered-js">
+            // why it doesn't work on firefox?
+            var card = $(".card");
+
+            $(document).on("mousemove", function (e) {
+                var ax = -($(window).innerWidth() / 2 - e.pageX) / 20;
+                var ay = ($(window).innerHeight() / 2 - e.pageY) / 10;
+                card.attr("style", "transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-webkit-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg);-moz-transform: rotateY(" + ax + "deg) rotateX(" + ay + "deg)");
+            });
+                                  
+        </script>
+
+    }
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="JobPortalSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="JobDetail">
+    <Key>
+      <PropertyRef Name="JobId" />
+    </Key>
+    <Property Name="JobId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmailId" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="SkillsRequired" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Qualification" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="Location" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Salary" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="NoOfVaccancies" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="UserInformation">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Password" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="Gender" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityContainer Name="JobPortalSystemContext1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="JobDetails" EntityType="Self.JobDetail" />
+    <EntitySet Name="UserInformations" EntityType="Self.UserInformation" />
+  </EntityContainer>
+</Schema>

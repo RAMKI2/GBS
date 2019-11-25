@@ -1,0 +1,42 @@
+﻿@model IEnumerable<JPSMVC_Ramya.Models.JobDetail>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Job Portal</h2>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#employer").keyup(function () {
+                $("#myform").submit();
+            })
+        })
+    </script>
+}
+<br />
+<div class="row">
+    <div class="col-md-12 form-horizontal">
+        @using (Ajax.BeginForm("Search", "JobDetail", new AjaxOptions
+        {
+            HttpMethod = "POST",
+            UpdateTargetId = "searchResult"
+        }, new { id = "myform" }))
+        {
+            <div class="form-group">
+                <label class="control-label">Search</label>
+                <input type="search" class="form-control" id="employer" name="employer" placeholder="Employer Name" />
+            </div>
+            
+            <br /><br />
+        }
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12" id="searchResult">
+        @Html.Partial("Search", Model)
+    </div>
+</div>
